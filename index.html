@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1F2A44">
+<title>وثاق — تجربة تفاعلية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700&family=Noto+Kufi+Arabic:wght@700&family=Readex+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1F2A44;--clay:#C8745A;--sand:#F5EFE6;--mist:#8FA6C1;--stone:#E4DDD2;--char:#2B3140;--ok:#3F8F6B;--err:#B3473F;--mut:#5B6478;--bg:var(--sand)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--char);font:400 17px/1.8 'Readex Pro','Manrope',system-ui,sans-serif;min-height:100vh;-webkit-text-size-adjust:100%}
+body.dr{--bg:#fff}
+#app{max-width:480px;margin:auto;padding:max(12px,env(safe-area-inset-top)) 20px calc(48px + env(safe-area-inset-bottom))}
+h1,h2,h3,.wm{font-family:'Noto Kufi Arabic','Readex Pro',sans-serif;font-weight:700;color:var(--ink)}
+h1{font-size:36px;line-height:1.3}h2{font-size:28px;line-height:1.35;margin:24px 0 8px}h3{font-size:22px;line-height:1.4;margin-bottom:6px}
+p{max-width:62ch;margin:6px 0}.sm{font-size:14px;line-height:1.6;color:var(--mut)}
+.n{font-family:'Manrope','Readex Pro',sans-serif;font-weight:600;direction:ltr;unicode-bidi:isolate}
+.hd{padding:6px 0 10px}.hr{display:flex;align-items:center;gap:10px}.hr .bw{font-family:'Noto Kufi Arabic';color:var(--ink);font-size:20px}
+.pill{margin-inline-start:auto;background:var(--ink);color:var(--sand);border-radius:99px;padding:2px 14px;font-size:14px;font-weight:500}
+.rs{background:none;border:1.5px solid var(--stone);border-radius:12px;width:40px;height:40px;color:var(--ink);font-size:18px;cursor:pointer}
+.pb{display:flex;gap:6px;margin-top:10px}.pb i{flex:1;height:4px;border-radius:4px;background:var(--stone)}.pb i.on{background:var(--clay)}
+.card{background:#fff;border:1px solid var(--stone);border-radius:12px;padding:20px;margin:16px 0}
+.clin{background:var(--sand);border-inline-start:6px solid var(--ink)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--stone)}
+.row:last-of-type{border-bottom:0}.row b{font-weight:500;text-align:end}.row span:first-child{color:var(--mut);font-size:15px}
+.r2{display:flex;justify-content:space-between;align-items:center;gap:12px}
+label{display:block;font-weight:600;font-size:15px;margin:18px 0 6px;color:var(--ink)}
+input,select,textarea{width:100%;font:inherit;color:var(--char);background:#fff;border:1.5px solid #8A93A6;border-radius:12px;padding:12px 14px}
+input[type=tel]{text-align:right}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--mist);outline-offset:2px}
+.btn{display:block;width:100%;min-height:52px;border:0;border-radius:12px;font:600 17px 'Readex Pro',sans-serif;padding:12px 20px;margin:14px 0;cursor:pointer}
+.p{background:var(--ink);color:var(--sand)}.c{background:var(--clay);color:var(--ink)}.o{background:none;border:1.5px solid var(--ink);color:var(--ink)}
+.dis,.btn:disabled{background:#9DA3B0;color:var(--sand);cursor:not-allowed}
+.lnk{background:none;border:0;color:var(--ink);font:500 16px 'Readex Pro';text-decoration:underline;text-underline-offset:4px;padding:10px 0;cursor:pointer}
+.chip{display:inline-block;padding:1px 14px;border-radius:99px;font-size:14px;font-weight:500;line-height:1.8}
+.b{background:#DCE3EE;color:var(--ink)}.g{background:#D9EADF;color:#256B4F}.r{background:#F2D9D6;color:#8F2F28}.s{background:var(--stone);color:var(--char)}
+.er{color:var(--err);font-size:15px;min-height:0}.ok{color:var(--ok);font-weight:600}
+.slots{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.slot,.yn{min-height:50px;background:#fff;border:1.5px solid #8A93A6;border-radius:12px;font:600 17px 'Readex Pro';color:var(--ink);cursor:pointer}
+.slot.on,.yn.on{background:var(--ink);color:var(--sand);border-color:var(--ink)}
+.hero{background:var(--ink);color:var(--sand);border-radius:12px;padding:44px 24px 36px;text-align:center;margin-top:12px}
+.hero .wm{color:var(--sand);font-size:44px;line-height:1.3;margin-top:8px}.hero svg{width:76px;height:84px;color:var(--sand)}
+.lat{font:600 15px Manrope;letter-spacing:.5em;color:var(--mist);margin:2px 0 18px;padding-inline-start:.5em}.hero p{margin:auto;color:var(--sand)}
+.idc{background:var(--ink);color:var(--sand);border-radius:12px;padding:22px;text-align:center;margin:20px 0}
+.idc span{display:block;font-size:14px;color:var(--mist)}.idc b{font:700 34px Manrope;letter-spacing:.06em;direction:ltr;display:block}
+.msg{background:var(--stone);border-radius:12px;padding:16px;font-size:16px;line-height:1.9}
+.sw{flex:none;width:52px;height:30px;border-radius:99px;border:0;background:#9DA3B0;position:relative;cursor:pointer}
+.sw::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.2s}
+.sw.on{background:var(--ink)}.sw.on::after{inset-inline-start:25px}
+.me{background:rgba(143,166,193,.18);border-radius:12px;padding-inline:10px;margin-inline:-10px}
+.xf{text-align:center;padding-top:56px}.xf p{margin-inline:auto}
+.st{background:none;border:0;font-size:40px;line-height:1.2;color:var(--stone);cursor:pointer;padding:0 4px}.st.on{color:var(--clay)}
+.stars{display:flex;justify-content:center;margin:8px 0}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#t{position:fixed;inset-inline:20px;bottom:calc(92px + env(safe-area-inset-bottom));z-index:60;max-width:440px;margin:auto;background:var(--ok);color:#fff;border-radius:12px;padding:14px 18px;font-weight:500;text-align:center;opacity:0;transform:translateY(12px);transition:.25s;pointer-events:none}
+#t.on{opacity:1;transform:none}
+#app{padding-top:0}
+.hd{position:sticky;top:0;z-index:20;background:var(--bg);margin:0 -20px;padding:max(10px,env(safe-area-inset-top)) 20px 10px;border-bottom:1px solid var(--stone)}
+.hr{display:flex;align-items:center;gap:12px}
+.rs{display:grid;place-items:center}.ri{flex:none;justify-content:center;align-items:center;width:42px;height:42px;border-radius:12px;display:grid;place-items:center}
+.k0{background:#DCE3EE}.k1{background:var(--stone)}.k2{background:var(--ink)}.k3{background:var(--clay)}
+.who{flex:1;line-height:1.3}.who small{display:block;font-size:14px;color:var(--mut)}.who b{font:700 19px 'Noto Kufi Arabic',sans-serif;color:var(--ink)}
+.trk{display:flex;gap:6px;margin-top:10px}.trk span{flex:1;text-align:center;font-size:14px;font-weight:500;padding:2px 0;border-radius:99px;border:1.5px solid var(--stone);color:var(--mut)}
+.trk .on{background:var(--ink);border-color:var(--ink);color:var(--sand)}.trk .dn{background:#D9EADF;border-color:#D9EADF;color:#256B4F}
+.fx{position:sticky;bottom:calc(12px + env(safe-area-inset-bottom));box-shadow:0 10px 28px rgba(31,42,68,.28);z-index:10}
+input[dir=ltr]{text-align:right}
+.slots{grid-template-columns:repeat(3,1fr)}
+.slot{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px;line-height:1.5}.slot small{font:500 14px 'Readex Pro'}
+.slot:disabled{background:var(--sand);border-color:var(--stone);color:#8A93A6;cursor:not-allowed}.slot:disabled .n{text-decoration:line-through}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.opt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:14px 8px;min-height:104px;background:#fff;border:1.5px solid #8A93A6;border-radius:12px;font:600 17px 'Readex Pro',sans-serif;color:var(--ink);cursor:pointer}
+.opt.on{border-color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink);background:#F3F6FA}.opt.dim{background:var(--sand);border-color:var(--stone);color:var(--mut)}
+.sp{position:fixed;inset:0;z-index:50;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:opacity .5s;cursor:pointer}.sp.out{opacity:0}
+.sp .pa{fill:none;stroke:#F5EFE6;stroke-width:13;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:0;animation:dr 1.4s cubic-bezier(.65,0,.35,1) .25s forwards}
+.sp .kh{transform-box:fill-box;transform-origin:center;opacity:0;transform:scale(.3);animation:kp .6s cubic-bezier(.2,1.5,.4,1) 1.55s forwards}
+.sp .u{opacity:0;transform:translateY(10px);animation:up .7s ease forwards}
+.sp .wm{color:var(--sand);font-size:46px;line-height:1.3;margin-top:18px}.sp .lat{margin:2px 0 22px}
+@keyframes dr{0%{opacity:1;stroke-dashoffset:1}100%{opacity:1;stroke-dashoffset:0}}
+@keyframes kp{to{opacity:1;transform:none}}@keyframes up{to{opacity:1;transform:none}}
+#app.in{animation:fi .3s ease}@keyframes fi{from{opacity:0;transform:translateY(6px)}}
+@media(prefers-reduced-motion:reduce){.sp .pa{animation:none;opacity:1;stroke-dashoffset:0}.sp .kh,.sp .u{animation:none;opacity:1;transform:none}#app.in{animation:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="lg" viewBox="0 0 100 110"><path d="M29 55A24 24 0 1 1 70 38V54C70 78 52 90 20 90" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><circle cx="46" cy="36" r="4.6" fill="#C8745A"/><path d="M43 39h6l2 13H41z" fill="#C8745A"/></symbol></svg>
+<div id="app"></div><div id="t" role="status"></div>
+<script>
+// رابط Cloudflare Worker الذي يرسل نتائج الاستبيان إلى تيليجرام
+const SUBMIT_URL='';
+
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const SL=[['09:00',0],['10:30',1],['12:00',0],['14:00',1],['15:30',1],['17:00',0]],DX=['اضطراب قلق','نوبة اكتئابية','اضطراب نوم','يحتاج مزيدًا من التقييم'],FU=['بعد أسبوع','بعد أسبوعين','بعد شهر'];
+const MD=[['إسيتالوبرام 10 ملغ','مرة يوميًا صباحًا'],['هيدروكسيزين 25 ملغ','عند الحاجة مساءً']];
+const TY={'معاينة':'زيارة جديدة أو شكوى جديدة.','مراجعة':'متابعة لحالة سبق أن عرضتها على الطبيب.','استشارة':'سؤال أو رأي سريع، دون إدخال بيانات.'};
+let DT='غدًا';try{DT=new Date(Date.now()+864e5).toLocaleDateString('ar-u-nu-latn',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}catch(e){}
+const CH={'محجوز':'b','مؤكد':'b','حضر':'g','غاب':'r','ملغي':'s','مدفوعة':'g'};
+const chip=s=>`<span class="chip ${CH[s]}">${s}</span>`,row=(k,v)=>`<div class=row><span>${k}</span><b>${v}</b></div>`,num=v=>`<span class=n>${v}</span>`;
+const I={u:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>',c:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/>',f:'<path d="M7 3h7l5 5v13H7z"/><path d="M10 13h6M10 17h6"/>',s:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/>',e:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',v:'<rect x="2" y="6" width="14" height="12" rx="3"/><path d="m16 10 6-3v10l-6-3"/>',r:'<path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/>',h:'<path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/>'};
+const ic=(p,c='var(--ink)',z=28)=>`<svg width=${z} height=${z} viewBox="0 0 24 24" fill=none stroke="${c}" stroke-width=1.75 stroke-linecap=round stroke-linejoin=round>${p}</svg>`;
+const tm=()=>new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}),first=()=>esc(S.name.trim().split(' ')[0]);
+const RN=['المريض','السكرتير','الطبيب','التقييم'],RI=['u','c','f','s'];
+let S,scr;const T=()=>SL[S.slot][0];
+function init(f){S={name:'',phone:'',reason:'',slot:1,type:'معاينة',rid:'WTQ-2048',id:'',st:'محجوز',off:false,pend:false,q:0,fee:20,sent:false,lk:false,saved:false,opened:false,log:[],n1:'',n2:DX[0],n3:'',n4:FU[1],r:0,y:'',note:'',sn:'',sc:''};if(f){go('splash');setTimeout(leave,3400)}else go('intro')}
+function leave(){if(scr!='splash'||S.lv)return;S.lv=1;$('.sp').classList.add('out');setTimeout(()=>go('intro'),500)}
+function go(s){scr=s;draw();scrollTo(0,0);if(s!='splash'){const a=$('#app');a.classList.remove('in');void a.offsetWidth;a.classList.add('in')}}
+function toast(m){const t=$('#t');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2800)}
+function hd(k){return`<div class=hd><div class=hr><div class="ri k${k}">${ic(I[RI[k]],k==2?'#F5EFE6':'var(--ink)',24)}</div><div class=who><small>${k<3?'أنت الآن':'اكتملت الرحلة'}</small><b>${RN[k]}</b></div><svg width=24 height=27 style="color:var(--ink)"><use href="#lg"/></svg><button class=rs onclick=init() aria-label="البدء من جديد">${ic(I.r,'var(--ink)',20)}</button></div><div class=trk>${RN.slice(0,3).map((n,i)=>`<span class="${i==k?'on':i<k?'dn':''}">${i<k?'✓ ':''}${n}</span>`).join('')}</div></div>`}
+const xf=(i,t,d,n)=>`<div class=xf>${ic(I[i],'var(--clay)',56)}<h2>${t}</h2><p>${d}</p><button class="btn p fx" onclick="go('${n}')">متابعة</button></div>`;
+
+const V={
+splash:()=>`<div class=sp onclick=leave()><svg width=132 height=145 viewBox="0 0 100 110"><path class=pa pathLength=1 d="M29 55A24 24 0 1 1 70 38V54C70 78 52 90 20 90"/><g class=kh><circle cx=46 cy=36 r=4.6 fill=#C8745A /><path d="M43 39h6l2 13H41z" fill=#C8745A /></g></svg><div class="wm u" style="animation-delay:1.9s">وثاق</div><div class="lat u" style="animation-delay:2.1s">WITHAQ</div><p class=u style="animation-delay:2.4s;color:var(--mist)">ثقة تُحفظ… ورعاية تستمر</p></div>`,
+
+intro:()=>`<div class=hero><svg><use href="#lg"/></svg><div class=wm>وثاق</div><div class=lat>WITHAQ</div><p>ثقة تُحفظ… ورعاية تستمر</p></div>
+<h2>مرحبًا بك في عيادة الأمل</h2><p>احجز موعدك في دقائق، ثم تابع الرحلة كما تعيشها العيادة: من الحجز إلى الاستقبال إلى غرفة الطبيب.</p>
+<div class=card>${[['u','المريض','يحجز ويتابع موعده'],['c','السكرتير','يدير الحجز والاستقبال والفوترة'],['f','الطبيب','يعاين ويكتب التقرير']].map(r=>`<div class=row style="justify-content:flex-start;gap:14px">${ic(I[r[0]])}<div><b>${r[1]}</b><p class=sm style="margin:0">${r[2]}</p></div></div>`).join('')}</div>
+<button class="btn c fx" onclick="go('book')">احجز موعدًا</button>`,
+
+book:()=>`<h2>حجز موعد</h2><p class=sm>عيادة الأمل للطب النفسي · إدلب</p>
+<div class=card><label for=nm style="margin-top:0">الاسم الكامل</label><input id=nm placeholder="الاسم الكامل" value="${esc(S.name)}" oninput="S.name=this.value" autocomplete=off><p class=sm>يظهر للطبيب فقط. أما الاستقبال فيرى رقمك الخاص.</p>
+<label for=ph>رقم الهاتف</label><input id=ph type=tel dir=ltr placeholder="09XX XXX XXX" value="${esc(S.phone)}" oninput="S.phone=this.value"></div>
+<div class=card><h3>نوع الجلسة</h3><div class=two><button class="opt on">${ic(I.h)}حضورية<span class=sm>في العيادة</span></button><button class="opt dim" onclick="toast('جلسة الفيديو ستكون جاهزة قريبًا. حجزك حضوري.')">${ic(I.v,'var(--mut)')}فيديو<span class="chip s">قريبًا</span></button></div><p class=sm style="margin-top:10px">ميزة جلسة الفيديو لم تجهز بعد وستكون متاحة قريبًا. الحجز الآن حضوري فقط.</p></div>
+<div class=card><h3>الموعد</h3><p class=sm>${DT}</p><div class=slots>${SL.map((s,i)=>s[1]?`<button class="slot ${S.slot==i?'on':''}" onclick="S.slot=${i};draw()">${num(s[0])}</button>`:`<button class=slot disabled>${num(s[0])}<small>غير متاح</small></button>`).join('')}</div></div>
+<div class=card><h3>نوع الزيارة</h3><div class=three>${['معاينة','مراجعة','استشارة'].map(t=>`<button class="yn ${S.type==t?'on':''}" onclick="S.type='${t}';draw()">${t}</button>`).join('')}</div><p class=sm style="margin-top:10px">${TY[S.type]}</p>
+${S.type=='معاينة'?`<label for=rs>سبب الزيارة (اختياري)</label><textarea id=rs rows=3 oninput="S.reason=this.value">${esc(S.reason)}</textarea>`:''}
+${S.type=='مراجعة'?`<label for=ri>رقمك الخاص في العيادة</label><input id=ri dir=ltr value="${esc(S.rid)}" oninput="S.rid=this.value"><p class=sm>أُدرج تلقائيًا من حسابك.</p>`:''}</div>
+<p id=er class=er></p><button class="btn c fx" onclick=book()>تأكيد الحجز</button>`,
+
+done:()=>`<h2>تم استلام حجزك</h2><p>${S.type=='مراجعة'?'ربطنا الحجز بملفك الحالي في العيادة.':'هذا رقمك الخاص في العيادة. احتفظ به، فسيُطلب منك في كل زيارة.'}</p><div class=idc><span>رقم المريض</span><b>${S.id}</b></div><div class=card>${row('التاريخ',DT)}${row('الوقت',num(T()))}${row('نوع الزيارة',S.type)}</div><button class="btn p fx" onclick="go('home')">دخول حسابي</button>`,
+
+home:()=>{const x=S.st=='ملغي';return`<h2>أهلًا ${first()}</h2>
+<div class=card><div class=r2><h3>موعدك القادم</h3>${chip(S.st)}</div>${row('التاريخ',DT)}${row('الوقت',num(T()))}${row('الجلسة','حضورية · '+S.type)}${row('رقم المريض',num(S.id))}${row('العيادة','عيادة الأمل')}</div>
+${x?'':`<div class=card><p>${S.st=='محجوز'?'بانتظار تأكيد العيادة. ستصلك رسالة على هاتفك.':'موعدك مؤكد.'} وقبل الموعد بيوم يصلك تذكير.</p></div>`}
+<div class="card r2">${ic(I.s,'var(--clay)',32)}<p class=sm style="flex:1">خصوصيتك: اسمك وسجلك الطبي لا يراهما إلا طبيبك. الاستقبال يرى رقمك وبيانات الحجز فقط.</p></div>
+${x?`<button class="btn c fx" onclick="S.st='محجوز';go('book')">حجز موعد جديد</button>`:`<button class="btn p fx" onclick="go('x1')">تابع كسكرتير العيادة</button><button class="btn o" onclick="if(confirm('إلغاء الموعد؟')){S.st='ملغي';draw()}">إلغاء الموعد</button>`}
+<button class="btn dis" disabled>جلسة فيديو — قريبًا</button>`},
+
+x1:()=>xf('c','الآن: السكرتير','ستدير الحجز وترسل التأكيد وتستقبل المريض. ترى رقمه فقط، لا اسمه ولا سجله الطبي.','sec'),
+x2:()=>xf('f','الآن: الطبيب','ستعاين المريض وتكتب تقريره. هذا السجل لا يراه أحد غيرك.','doc'),
+
+sec:()=>{const t=T(),L=[['09:00','WTQ-1873','حضر'],['12:00','WTQ-2210','غاب'],['17:00','WTQ-1546','محجوز'],[t,S.id,S.st,1]].sort((a,b)=>a[0]<b[0]?-1:1);
+const msg=`مرحبًا، تم تأكيد موعدك في عيادة الأمل ${DT} الساعة ${t}. رقمك الخاص: ${S.id}. سنذكّرك قبل الموعد بيوم.`;
+return`<h2>مواعيد الغد</h2><p class=sm>${DT}</p>
+<div class=card>${L.map(l=>`<div class="row ${l[3]?'me':''}"><span>${num(l[0])}</span><b>${num(l[1])}</b>${chip(l[2])}</div>`).join('')}</div>
+<div class=card><div class=r2><h3>${num(S.id)}</h3><span class="chip b">${S.type}</span></div>${row('التاريخ',DT)}${row('الوقت',num(t))}${row('الهاتف',S.phone?num(esc(S.phone)):'—')}${row('حالة الحضور',chip(S.st))}<p class=sm>الاسم والسجل الطبي يظهران للطبيب فقط.</p>
+<button class=lnk onclick=lock()>عرض السجل</button>${S.lk?'<p class=er>لا تملك صلاحية عرض هذا السجل. اطلب الإذن من مدير العيادة.</p>':''}</div>
+${S.sent?`<div class=card><div class=r2><h3>رسالة التأكيد</h3><span class="chip g">أُرسلت</span></div><div class=msg>${msg}</div><p class=sm>هكذا تصل إلى هاتف المريض.</p></div>`:''}
+${S.q>=2?`<div class=card><h3>الفوترة</h3>${S.q==2?`<label for=fe style="margin-top:0">رسم المعاينة بالدولار</label><input id=fe type=number inputmode=numeric value="${S.fee}" oninput="S.fee=+this.value||0"><button class="btn p" onclick=pay()>تسجيل الدفع</button>`:row('الفاتورة',num('INV-'+S.id.slice(4)))+row('المبلغ',num(S.fee+' $'))+row('الحالة',chip('مدفوعة'))}</div>`:''}
+${S.q==0?'<button class="btn p fx" onclick=conf()>تأكيد الحجز وإرسال الرسالة</button>':''}${S.q==1?'<button class="btn p fx" onclick=arrive()>وصل المريض — تسجيل الحضور</button>':''}${S.q==3?'<button class="btn c fx" onclick="go(\'x2\')">إدخال المريض إلى الطبيب</button>':''}`},
+
+doc:()=>{if(!S.opened){S.opened=1;S.log.push([tm(),'الطبيب','فتح ملف المريض'])}
+const o=(a,v)=>a.map(x=>`<option ${x==v?'selected':''}>${x}</option>`).join(''),t=S.type,rv=t=='مراجعة',em=m=>`<p class=sm>${m}</p>`;
+return`<h1>ملف المريض</h1>
+<div class="card clin"><div class=r2><h3>${esc(S.name)}</h3><span class="chip b">${t}</span></div>${row('رقم المريض',num(S.id))}${row('العمر',num(34))}${row('التاريخ',DT)}${row('الوقت',num(T()))}</div>
+${t=='معاينة'?`<div class="card clin"><h3>سبب الزيارة</h3><p>${S.reason.trim()?esc(S.reason):'لم يذكر المراجع سببًا للزيارة.'}</p></div>`:''}
+<h2>سجل الجلسات</h2>
+${rv?`<div class="card clin"><div class=r2><h3>تقرير سابق</h3><span class=sm>قبل 3 أسابيع</span></div>${row('التقييم','اضطراب قلق')}<p>قلق متواصل وصعوبة في النوم، مع استجابة جيدة لجلسات العلاج المعرفي السلوكي وبقاء اضطراب النوم.</p><p class=sm>الخطة: متابعة العلاج الأسبوعي وإعادة التقييم بعد ثلاثة أسابيع.</p></div>`:em('لا توجد جلسات سابقة. أضف أول جلسة.')}
+<h2>الأدوية السابقة</h2>
+${rv?`<div class="card clin">${MD.map(m=>`<div class=row style="flex-direction:column;align-items:flex-start;gap:0"><b style="text-align:start">${m[0]}</b><span class=sm>${m[1]} · وُصف قبل 3 أسابيع</span></div>`).join('')}</div>`:em('لا توجد أدوية مسجلة لهذا المريض.')}
+<div class="card clin"><h3>تقرير ${t=='معاينة'?'المعاينة':rv?'المراجعة':'الاستشارة'}</h3>
+<label for=n1 style="margin-top:0">الملاحظات السريرية</label><textarea id=n1 rows=4 oninput="S.n1=this.value">${esc(S.n1)}</textarea>
+<label for=n2>التقييم</label><select id=n2 onchange="S.n2=this.value">${o(DX,S.n2)}</select>
+<label for=n3>الخطة العلاجية</label><textarea id=n3 rows=3 oninput="S.n3=this.value">${esc(S.n3)}</textarea>
+<label for=n4>موعد المتابعة</label><select id=n4 onchange="S.n4=this.value">${o(FU,S.n4)}</select>
+<button class=lnk onclick=fill()>تعبئة سريعة</button>
+${S.saved?'<p class=ok>تم حفظ الجلسة بأمان.</p>':'<button class="btn p" onclick=save()>حفظ الجلسة</button>'}</div>
+<button class="btn dis" disabled>المتابعة الدوائية — قريبًا</button>
+${S.saved?`<div class="card clin"><div class=r2><h3>سجل التدقيق</h3>${ic(I.e,'var(--clay)')}</div>${S.log.map(l=>row(num(l[0]),l[1]+' · '+l[2])).join('')}</div><button class="btn c fx" onclick=notify()>إنهاء المعاينة — المريض التالي جاهز</button>`:''}`},
+
+notif:()=>`<h2>أُرسل الإشعار</h2><div class=card><div class=r2><b>إشعار للسكرتير</b><span class="chip g">وصل</span></div><p>انتهت معاينة المريض ${num(S.id)}. الطبيب جاهز لاستقبال المريض التالي.</p></div><p class=sm>هكذا ينتقل العمل بين الطبيب والاستقبال دون مناداة أو أوراق.</p><button class="btn p fx" onclick="go('survey')">متابعة إلى التقييم</button>`,
+
+survey:()=>`<h2>رأيك يهمنا</h2><p>اكتملت الرحلة. ثلاثة أسئلة قصيرة تساعدنا على تطوير الفكرة.</p>
+<div class=card><label for=sn style="margin-top:0">الاسم (اختياري)</label><input id=sn value="${esc(S.sn)}" oninput="S.sn=this.value" autocomplete=off><label for=sc>رقم التواصل (اختياري)</label><input id=sc type=tel dir=ltr value="${esc(S.sc)}" oninput="S.sc=this.value"><input id=hp tabindex=-1 autocomplete=off aria-hidden=true style="position:absolute;left:-9999px"><label style="text-align:center">ما تقييمك للفكرة من 5؟</label><div class=stars>${[1,2,3,4,5].map(i=>`<button class="st ${S.r>=i?'on':''}" aria-label="${i} من 5" onclick="S.r=${i};draw()">★</button>`).join('')}</div>
+<label>لو كنت طبيبًا نفسيًا، هل ستترك الملفات الورقية وتنتقل إلى وثاق لإدارة عيادتك؟</label>
+<div class=two>${['نعم','لا'].map(v=>`<button class="yn ${S.y==v?'on':''}" onclick="S.y='${v}';draw()">${v=='نعم'?'نعم، سأنتقل':'لا، ليس الآن'}</button>`).join('')}</div>
+<label for=nt>ملاحظة أو دعم (اختياري)</label><textarea id=nt rows=3 oninput="S.note=this.value">${esc(S.note)}</textarea>
+<p id=er class=er></p><button id=sb class="btn c" onclick=send()>إرسال</button></div>`,
+
+thanks:()=>`<div class=hero><svg><use href="#lg"/></svg><div class=wm>وثاق</div><div class=lat>WITHAQ</div><p>شكرًا لك. وصلنا رأيك وسنقرؤه بعناية.</p></div><button class="btn p" onclick=init()>البدء من جديد</button>`
+};
+function draw(){const k={book:0,done:0,home:0,x1:1,sec:1,x2:2,doc:2,notif:2,survey:3}[scr];document.body.className=scr=='doc'?'dr':'';$('#app').innerHTML=(k===undefined?'':hd(k))+V[scr]()}
+function book(){const e=m=>$('#er').textContent=m;if(!S.name.trim())return e('اكتب اسمك الكامل لنكمل.');if(S.type=='مراجعة'&&!S.rid.trim())return e('اكتب رقمك الخاص في العيادة.');S.id=S.type=='مراجعة'?S.rid.trim().toUpperCase():'WTQ-'+(1000+Math.floor(Math.random()*9000));go('done')}
+
+function conf(){S.sent=true;S.st='مؤكد';S.q=1;draw();toast('أُرسلت رسالة التأكيد إلى المريض.')}
+function arrive(){S.st='حضر';S.q=2;draw()}
+function pay(){S.q=3;draw();toast('تم تسجيل الدفع.')}
+function lock(){if(!S.lk)S.log.push([tm(),'السكرتير','محاولة عرض السجل — مرفوضة']);S.lk=true;draw()}
+function fill(){S.n1='قلق متواصل وصعوبة في النوم منذ ثلاثة أشهر، مع إرهاق في العمل.';S.n3='جلسات علاج معرفي سلوكي أسبوعية، وتمارين لتنظيم النوم، وإعادة التقييم عند المتابعة.';draw()}
+function save(){S.saved=true;S.log.push([tm(),'الطبيب','حفظ تقرير الجلسة']);draw();toast('تم حفظ الجلسة بأمان.')}
+function notify(){S.log.push([tm(),'الطبيب','إشعار المريض التالي جاهز']);go('notif')}
+async function send(){if(!S.r||!S.y){$('#er').textContent='اختر تقييمًا وإجابة قبل الإرسال.';return}
+const b=$('#sb');b.disabled=true;b.textContent='جارٍ الإرسال…';
+const d={'الاسم':S.sn.trim()||'—','رقم التواصل':S.sc.trim()||'—','تقييم الفكرة (من 5)':S.r,'الانتقال من الورق إلى وثاق':S.y,'ملاحظة أو دعم':S.note.trim()||'—'};
+if(!$('#hp').value){enq(d);await flush()}
+go('thanks')}
+const qs=()=>{try{return JSON.parse(localStorage.getItem('wq_q')||'[]')}catch(e){return[]}};
+function enq(d){try{localStorage.setItem('wq_q',JSON.stringify(qs().concat([d])))}catch(e){}}
+async function flush(){if(!SUBMIT_URL)return;const k=[];for(const d of qs()){try{const c=new AbortController();setTimeout(()=>c.abort(),5000);const r=await fetch(SUBMIT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d),signal:c.signal});if(r.status>=500||r.status==429)k.push(d)}catch(e){k.push(d)}}try{localStorage.setItem('wq_q',JSON.stringify(k))}catch(e){}}
+init(1);flush();
+</script>
+</body>
+</html>
