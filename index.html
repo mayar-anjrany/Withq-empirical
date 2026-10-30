@@ -88,7 +88,7 @@ input[dir=ltr]{text-align:right}
 <div id="app"></div><div id="t" role="status"></div>
 <script>
 // رابط Cloudflare Worker الذي يرسل نتائج الاستبيان إلى تيليجرام
-const SUBMIT_URL='';
+const SUBMIT_URL='https://withaq-form.mdrymabrf79.workers.dev/';
 
 const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const SL=[['09:00',0],['10:30',1],['12:00',0],['14:00',1],['15:30',1],['17:00',0]],DX=['اضطراب قلق','نوبة اكتئابية','اضطراب نوم','يحتاج مزيدًا من التقييم'],FU=['بعد أسبوع','بعد أسبوعين','بعد شهر'];
