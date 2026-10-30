@@ -171,7 +171,7 @@ ${S.saved?`<div class="card clin"><div class=r2><h3>سجل التدقيق</h3>${
 notif:()=>`<h2>أُرسل الإشعار</h2><div class=card><div class=r2><b>إشعار للسكرتير</b><span class="chip g">وصل</span></div><p>انتهت معاينة المريض ${num(S.id)}. الطبيب جاهز لاستقبال المريض التالي.</p></div><p class=sm>هكذا ينتقل العمل بين الطبيب والاستقبال دون مناداة أو أوراق.</p><button class="btn p fx" onclick="go('survey')">متابعة إلى التقييم</button>`,
 
 survey:()=>`<h2>رأيك يهمنا</h2><p>اكتملت الرحلة. ثلاثة أسئلة قصيرة تساعدنا على تطوير الفكرة.</p>
-<div class=card><label for=sn style="margin-top:0">الاسم (اختياري)</label><input id=sn value="${esc(S.sn)}" oninput="S.sn=this.value" autocomplete=off><label for=sc>رقم التواصل (اختياري)</label><input id=sc type=tel dir=ltr value="${esc(S.sc)}" oninput="S.sc=this.value"><input id=hp tabindex=-1 autocomplete=off aria-hidden=true style="position:absolute;left:-9999px"><label style="text-align:center">ما تقييمك للفكرة من 5؟</label><div class=stars>${[1,2,3,4,5].map(i=>`<button class="st ${S.r>=i?'on':''}" aria-label="${i} من 5" onclick="S.r=${i};draw()">★</button>`).join('')}</div>
+<div class=card><label for=sn style="margin-top:0">الاسم (اختياري)</label><input id=sn value="${esc(S.sn)}" oninput="S.sn=this.value" autocomplete=off><label for=sc>رقم التواصل (اختياري)</label><input id=sc type=tel dir=ltr value="${esc(S.sc)}" oninput="S.sc=this.value"><input id=hp tabindex=-1 autocomplete=off aria-hidden=true style="position:absolute;opacity:0;width:1px;height:1px;border:0;padding:0;pointer-events:none"><label style="text-align:center">ما تقييمك للفكرة من 5؟</label><div class=stars>${[1,2,3,4,5].map(i=>`<button class="st ${S.r>=i?'on':''}" aria-label="${i} من 5" onclick="S.r=${i};draw()">★</button>`).join('')}</div>
 <label>لو كنت طبيبًا نفسيًا، هل ستترك الملفات الورقية وتنتقل إلى وثاق لإدارة عيادتك؟</label>
 <div class=two>${['نعم','لا'].map(v=>`<button class="yn ${S.y==v?'on':''}" onclick="S.y='${v}';draw()">${v=='نعم'?'نعم، سأنتقل':'لا، ليس الآن'}</button>`).join('')}</div>
 <label for=nt>ملاحظة أو دعم (اختياري)</label><textarea id=nt rows=3 oninput="S.note=this.value">${esc(S.note)}</textarea>
@@ -179,7 +179,7 @@ survey:()=>`<h2>رأيك يهمنا</h2><p>اكتملت الرحلة. ثلاثة
 
 thanks:()=>`<div class=hero><svg><use href="#lg"/></svg><div class=wm>وثاق</div><div class=lat>WITHAQ</div><p>شكرًا لك. وصلنا رأيك وسنقرؤه بعناية.</p></div><button class="btn p" onclick=init()>البدء من جديد</button>`
 };
-function draw(){const k={book:0,done:0,home:0,x1:1,sec:1,x2:2,doc:2,notif:2,survey:3}[scr];document.body.className=scr=='doc'?'dr':'';$('#app').innerHTML=(k===undefined?'':hd(k))+V[scr]()}
+function draw(){const k={book:0,done:0,home:0,x1:1,sec:1,x2:2,doc:2,notif:2,survey:3}[scr];document.body.className=scr=='doc'?'dr':'';try{$('#app').innerHTML=(k===undefined?'':hd(k))+V[scr]()}catch(e){$('#app').innerHTML='<p class=er>تعذر عرض الشاشة: '+esc(e.message)+'</p><button class="btn p" onclick=init()>البدء من جديد</button>'}}
 function book(){const e=m=>$('#er').textContent=m;if(!S.name.trim())return e('اكتب اسمك الكامل لنكمل.');if(S.type=='مراجعة'&&!S.rid.trim())return e('اكتب رقمك الخاص في العيادة.');S.id=S.type=='مراجعة'?S.rid.trim().toUpperCase():'WTQ-'+(1000+Math.floor(Math.random()*9000));go('done')}
 
 function conf(){S.sent=true;S.st='مؤكد';S.q=1;draw();toast('أُرسلت رسالة التأكيد إلى المريض.')}
